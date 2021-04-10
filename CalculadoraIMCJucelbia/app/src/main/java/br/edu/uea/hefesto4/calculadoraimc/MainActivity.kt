@@ -1,11 +1,11 @@
 package br.edu.uea.hefesto4.calculadoraimc
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import java.text.NumberFormat
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,7 +32,11 @@ class MainActivity : AppCompatActivity() {
 
         val resultado = peso / (altura * altura)
 
-        textImcResultado.text = "$resultado"
+        val nf = NumberFormat.getCurrencyInstance()
+        nf.maximumIntegerDigits = 1
+        val nr = nf.format(resultado)
+
+        textImcResultado.text = "$nr"
 
         if (resultado < 19) {
             //abaixo
