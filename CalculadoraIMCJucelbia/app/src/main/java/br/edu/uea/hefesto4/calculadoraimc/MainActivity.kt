@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var editTextPeso: EditText
     private lateinit var editTextAltura: EditText
     private lateinit var textResultado: TextView
+    private lateinit var textImcResultado: TextView
     private lateinit var btnCalc: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,15 +21,19 @@ class MainActivity : AppCompatActivity() {
         editTextPeso = findViewById(R.id.editTextPeso)
         editTextAltura = findViewById(R.id.editTextAltura)
         textResultado = findViewById(R.id.textResultado)
+        textImcResultado = findViewById(R.id.txvImcResult)
         btnCalc = findViewById(R.id.btnCalc)
         btnCalc.setOnClickListener { calculate() }
     }
 
-    fun calculate() {
+    private fun calculate() {
         val peso = editTextPeso.text.toString().toFloat()
         val altura = editTextAltura.text.toString().toFloat()
 
         val resultado = peso / (altura * altura)
+
+        textImcResultado.text = "$resultado"
+
         if (resultado < 19) {
             //abaixo
             textResultado.text = "Abaixo do peso!"
@@ -39,6 +44,5 @@ class MainActivity : AppCompatActivity() {
             //ok
             textResultado.text = "Peso ok!"
         }
-
     }
 }
