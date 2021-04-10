@@ -9,29 +9,24 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    private var editTextPeso: EditText? = null
-    private var editTextAltura: EditText? = null
-    private var textIMC: TextView? = null
-    private var textResultado: TextView? = null
-    private var btnCalc: Button? = null
+    private lateinit var editTextPeso: EditText
+    private lateinit var editTextAltura: EditText
+    private lateinit var textResultado: TextView
+    private lateinit var btnCalc: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        editTextPeso = findViewById(R.id.editTextPeso)
+        editTextAltura = findViewById(R.id.editTextAltura)
+        textResultado = findViewById(R.id.textResultado)
+        btnCalc = findViewById(R.id.btnCalc)
+        btnCalc.setOnClickListener { calculate() }
     }
 
-    fun calcular(v: View?) {
-
-        val editTextPeso = findViewById<View>(R.id.editTextPeso) as EditText
-        val editTextAltura = findViewById<View>(R.id.editTextAltura) as EditText
-        val textIMC = findViewById<View>(R.id.textIMC) as TextView
-        val textResultado = findViewById<View>(R.id.textResultado) as TextView
-
-
+    fun calculate() {
         val peso = editTextPeso.text.toString().toFloat()
         val altura = editTextAltura.text.toString().toFloat()
-        val imc = textIMC.text.toString().toFloat()
 
         val resultado = peso / (altura * altura)
         if (resultado < 19) {
