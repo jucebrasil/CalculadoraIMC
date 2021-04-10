@@ -32,11 +32,11 @@ class MainActivity : AppCompatActivity() {
 
         val resultado = peso / (altura * altura)
 
-        val nf = NumberFormat.getCurrencyInstance()
+        val nf = NumberFormat.getNumberInstance()
         nf.maximumFractionDigits = 1
         val nr = nf.format(resultado)
 
-        textImcResultado.text = "$nr"
+        textImcResultado.text = nr
 
         if (resultado < 19) {
             //abaixo
